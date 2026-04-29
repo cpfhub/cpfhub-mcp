@@ -1,6 +1,7 @@
 {
   "name": "@cpfhub/mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "mcpName": "io.github.cpfhub/cpfhub",
   "description": "Official Model Context Protocol (MCP) server for CPFHub.io. Query Brazilian CPF data directly from AI agents like Claude, Cursor, and Windsurf.",
   "main": "dist/index.js",
   "type": "module",

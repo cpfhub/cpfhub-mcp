@@ -31,22 +31,22 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
       {
-        name: "lookup_cpf",
-        description: "Consulta informações de um CPF brasileiro (nome, gênero, data de nascimento).",
+        name: "get_person_by_cpf",
+        description: "Retrieve identity data (full name, gender, and date of birth) from a Brazilian CPF number.",
         inputSchema: {
           type: "object",
           properties: {
             cpf: {
               type: "string",
-              description: "Número do CPF (apenas dígitos ou formatado)",
+              description: "Brazilian CPF number (digits only or formatted as XXX.XXX.XXX-XX)",
             },
           },
           required: ["cpf"],
         },
       },
       {
-        name: "get_quota_info",
-        description: "Retorna informações sobre o saldo de créditos e plano do usuário.",
+        name: "get_quota_information",
+        description: "Retrieve the remaining API credits and current plan status for the authenticated account.",
         inputSchema: {
           type: "object",
           properties: {},
@@ -60,7 +60,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name, arguments: args } = request.params;
 
   try {
-    if (name === "lookup_cpf") {
+    if (name === "get_person_by_cpf") {
       const cpf = (args?.cpf as string).replace(/\D/g, "");
       const response = await axios.get(`${BASE_URL}/cpf/${cpf}`, {
         headers: { "x-api-key": API_KEY },
@@ -74,14 +74,12 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           },
         ],
       };
-    } else if (name === "get_quota_info") {
-      // Nota: O endpoint de quota pode variar, usando o padrão MCP descrito no mcp.md
+    } else if (name === "get_quota_information") {
       const response = await axios.get(`${BASE_URL}/mcp`, {
         params: { api_key: API_KEY },
-        // Simula uma chamada de tool do MCP para o backend
         data: {
           method: "tools/call",
-          params: { name: "get_quota_info", arguments: {} }
+          params: { name: "get_quota_information", arguments: {} }
         }
       });
 

@@ -1,0 +1,14 @@
+{
+  "name": "get_person_by_cpf",
+  "description": "Retrieve identity data from a Brazilian CPF number",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "cpf": {
+        "type": "string",
+        "description": "Brazilian CPF number (digits only or formatted as XXX.XXX.XXX-XX)"
+      }
+    },
+    "required": ["cpf"]
+  }
+}

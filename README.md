@@ -1,36 +1,46 @@
-# @cpfhub/mcp
+# @cpfhub/mcp: Servidor MCP para Consulta de CPF (AI-Native)
 
 **Official Model Context Protocol (MCP) server for [CPFHub.io](https://cpfhub.io)**
 
-Query Brazilian CPF data directly from AI agents like Claude, Cursor, and Windsurf using a standardized protocol.
+> Servidor oficial do Model Context Protocol (MCP) para a [CPFHub.io](https://cpfhub.io) — permitindo que agentes de IA consultem dados de CPF brasileiros (nome completo, data de nascimento, sexo) diretamente através de um protocolo padronizado.
 
 ---
 
-## Features
+## Por que usar o Servidor MCP do CPFHub.io?
 
-- **lookup_cpf**: Get full name, gender, and date of birth from any Brazilian CPF.
-- **get_quota_info**: Check your remaining credits and plan status.
-- **LGPD Compliant**: Built with privacy and security in mind.
-- **Fast**: ~300ms average response time.
+Este servidor MCP foi projetado para oferecer uma integração nativa e eficiente da API do CPFHub.io com agentes de IA e LLMs, com foco em Developer Experience (DX) e compatibilidade.
+
+### 1. Compatibilidade Nativa com Agentes de IA
+
+*   **OpenAPI Specification**: Um arquivo `openapi.yaml` está disponível para descrever a API, permitindo que agentes entendam automaticamente sua estrutura e schemas tipados.
+*   **Tool Descriptions**: A API é facilmente representável como "tool descriptions" para LLMs, facilitando a invocação em frameworks de agentes.
+*   **Integração Direta**: Permite que agentes como Claude, Cursor e Windsurf acessem dados de CPF sem a necessidade de escrever código HTTP complexo.
+
+### 2. Funcionalidades Principais
+
+*   **`consultar_cpf`**: Obtém nome completo, gênero e data de nascimento a partir de qualquer CPF brasileiro.
+*   **`obter_informacoes_cota`**: Verifica créditos restantes e status do plano.
+*   **Conformidade com a LGPD**: Desenvolvido com foco em privacidade e segurança.
+*   **Alta Performance**: Tempo médio de resposta de ~300ms.
 
 ---
 
-## Installation
+## Instalação
 
-You can run the server directly using `npx`:
+Você pode executar o servidor diretamente usando `npx`:
 
 ```bash
-export CPFHUB_API_KEY=your_api_key_here
+export CPFHUB_API_KEY=sua_chave_api_aqui
 npx @cpfhub/mcp
 ```
 
 ---
 
-## Configuration
+## Configuração
 
 ### Claude Desktop
 
-Add this to your `claude_desktop_config.json`:
+Adicione o seguinte ao seu `claude_desktop_config.json`:
 
 ```json
 {
@@ -39,7 +49,7 @@ Add this to your `claude_desktop_config.json`:
       "command": "npx",
       "args": ["-y", "@cpfhub/mcp"],
       "env": {
-        "CPFHUB_API_KEY": "YOUR_API_KEY_HERE"
+        "CPFHUB_API_KEY": "SUA_CHAVE_API_AQUI"
       }
     }
   }
@@ -48,21 +58,29 @@ Add this to your `claude_desktop_config.json`:
 
 ### Cursor
 
-1. Go to **Settings** > **Features** > **MCP**.
-2. Click **+ Add New MCP Server**.
-3. Name: `CPFHub`
-4. Type: `command`
-5. Command: `export CPFHUB_API_KEY=YOUR_API_KEY_HERE && npx -y @cpfhub/mcp`
+1.  Vá para **Settings** > **Features** > **MCP**.
+2.  Clique em **+ Add New MCP Server**.
+3.  Nome: `CPFHub`
+4.  Tipo: `command`
+5.  Comando: `export CPFHUB_API_KEY=SUA_CHAVE_API_AQUI && npx -y @cpfhub/mcp`
 
 ---
 
-## Requirements
+## Requisitos
 
-- Node.js 18 or higher.
-- A valid API Key from [app.cpfhub.io](https://app.cpfhub.io).
+*   Node.js 18 ou superior.
+*   Uma chave de API válida de [app.cpfhub.io](https://app.cpfhub.io).
 
 ---
 
-## License
+## Links Úteis
+
+*   [Documentação da API](https://cpfhub.io/documentacao)
+*   [Dashboard](https://app.cpfhub.io)
+*   [Especificação OpenAPI](openapi.yaml)
+
+---
+
+## Licença
 
 MIT © [CPFHub.io](https://cpfhub.io)

@@ -1,46 +1,44 @@
-# @cpfhub/mcp: Servidor MCP para Consulta de CPF (AI-Native)
+# cpfhub-mcp: Official MCP Server for CPFHub.io
 
 **Official Model Context Protocol (MCP) server for [CPFHub.io](https://cpfhub.io)**
 
-> Servidor oficial do Model Context Protocol (MCP) para a [CPFHub.io](https://cpfhub.io) — permitindo que agentes de IA consultem dados de CPF brasileiros (nome completo, data de nascimento, sexo) diretamente através de um protocolo padronizado.
+> Official MCP server for CPFHub.io. Allows AI agents to query Brazilian CPF data securely.
 
 ---
 
-## Por que usar o Servidor MCP do CPFHub.io?
+## Why use the CPFHub.io MCP Server?
 
-Este servidor MCP foi projetado para oferecer uma integração nativa e eficiente da API do CPFHub.io com agentes de IA e LLMs, com foco em Developer Experience (DX) e compatibilidade.
+This MCP server is designed to offer native and efficient integration of the CPFHub.io API with AI agents and LLMs, focusing on Developer Experience (DX) and compatibility.
 
-### 1. Compatibilidade Nativa com Agentes de IA
+### 1. Native Compatibility with AI Agents
 
-*   **OpenAPI Specification**: Um arquivo `openapi.yaml` está disponível para descrever a API, permitindo que agentes entendam automaticamente sua estrutura e schemas tipados.
-*   **Tool Descriptions**: A API é facilmente representável como "tool descriptions" para LLMs, facilitando a invocação em frameworks de agentes.
-*   **Integração Direta**: Permite que agentes como Claude, Cursor e Windsurf acessem dados de CPF sem a necessidade de escrever código HTTP complexo.
+*   **OpenAPI Specification**: The official API specification is available at [cpfhub-openapi](https://github.com/cpfhub/cpfhub-openapi), allowing agents to automatically understand its structure and typed schemas.
+*   **Tool Descriptions**: The API is exposed as clear "tool descriptions" for LLMs, facilitating invocation in agent frameworks.
+*   **Direct Integration**: Allows agents like Claude, Cursor, and Windsurf to access CPF data without the need to write complex HTTP code.
 
-### 2. Funcionalidades Principais
+### 2. Core Tools
 
-*   **`consultar_cpf`**: Obtém nome completo, gênero e data de nascimento a partir de qualquer CPF brasileiro.
-*   **`obter_informacoes_cota`**: Verifica créditos restantes e status do plano.
-*   **Conformidade com a LGPD**: Desenvolvido com foco em privacidade e segurança.
-*   **Alta Performance**: Tempo médio de resposta de ~300ms.
+*   **`get_person_by_cpf`**: Retrieve identity data (full name, gender, and birth date) from a Brazilian CPF number.
+*   **`get_quota_information`**: Check remaining credits and plan status.
 
 ---
 
-## Instalação
+## Installation
 
-Você pode executar o servidor diretamente usando `npx`:
+You can run the server directly using `npx`:
 
 ```bash
-export CPFHUB_API_KEY=sua_chave_api_aqui
+export CPFHUB_API_KEY=your_api_key_here
 npx @cpfhub/mcp
 ```
 
 ---
 
-## Configuração
+## Configuration
 
 ### Claude Desktop
 
-Adicione o seguinte ao seu `claude_desktop_config.json`:
+Add the following to your `claude_desktop_config.json`:
 
 ```json
 {
@@ -49,7 +47,7 @@ Adicione o seguinte ao seu `claude_desktop_config.json`:
       "command": "npx",
       "args": ["-y", "@cpfhub/mcp"],
       "env": {
-        "CPFHUB_API_KEY": "SUA_CHAVE_API_AQUI"
+        "CPFHUB_API_KEY": "YOUR_API_KEY_HERE"
       }
     }
   }
@@ -58,29 +56,37 @@ Adicione o seguinte ao seu `claude_desktop_config.json`:
 
 ### Cursor
 
-1.  Vá para **Settings** > **Features** > **MCP**.
-2.  Clique em **+ Add New MCP Server**.
-3.  Nome: `CPFHub`
-4.  Tipo: `command`
-5.  Comando: `export CPFHUB_API_KEY=SUA_CHAVE_API_AQUI && npx -y @cpfhub/mcp`
+1.  Go to **Settings** > **Features** > **MCP**.
+2.  Click **+ Add New MCP Server**.
+3.  Name: `CPFHub`
+4.  Type: `command`
+5.  Command: `export CPFHUB_API_KEY=YOUR_API_KEY_HERE && npx -y @cpfhub/mcp`
 
 ---
 
-## Requisitos
+## Examples
 
-*   Node.js 18 ou superior.
-*   Uma chave de API válida de [app.cpfhub.io](https://app.cpfhub.io).
+Check the `examples/` directory for sample usage with AI frameworks:
+
+*   [langchain_example.py](examples/langchain_example.py)
 
 ---
 
-## Links Úteis
+## Requirements
 
-*   [Documentação da API](https://cpfhub.io/documentacao)
+*   Node.js 18 or higher.
+*   A valid API key from [app.cpfhub.io](https://app.cpfhub.io).
+
+---
+
+## Useful Links
+
+*   [API Documentation](https://cpfhub.io/documentacao)
 *   [Dashboard](https://app.cpfhub.io)
-*   [Especificação OpenAPI](openapi.yaml)
+*   [OpenAPI Specification](https://github.com/cpfhub/cpfhub-openapi/blob/main/openapi.yaml)
 
 ---
 
-## Licença
+## License
 
 MIT © [CPFHub.io](https://cpfhub.io)
